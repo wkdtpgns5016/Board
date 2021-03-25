@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+    <insert id="insertMemberInfo" parameterType="com.board.model.MemberDTO">
+        insert into member (memId,
+                            memPw,
+                            memName,
+                            memPhone,
+                            memEmail)
+        values (#{member.memId},
+                #{member.memPw},
+                #{member.memName},
+                #{member.memPhone},
+                #{member.memEmail})
+    </insert>
+    <select id="selectMemberInfo" resultType="com.board.model.MemberDTO">
+        select * from member
+        where memId = #{memId} and
+              memPw = #{memPw}
+    </select>
+</mapper>

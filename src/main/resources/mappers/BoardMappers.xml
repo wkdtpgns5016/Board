@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+    <select id="selectBoardInfo" resultType="com.board.model.BoardDTO">
+        select * from board where bNum = #{bNum}
+    </select>
+
+    <select id="selectBoardList" resultType="com.board.model.BoardDTO">
+        select * from board
+    </select>
+
+    <insert id="insertBoardInfo" parameterType="com.board.model.BoardDTO">
+        insert into board (bId,
+                            bTitle,
+                            bContent)
+        values (#{board.bId},
+                #{board.bTitle},
+                #{board.bContent})
+    </insert>
+
+    <update id="updateBoardInfo" parameterType="com.board.model.BoardDTO">
+        update board set bTitle = #{board.bTitle} and bContent = #{board.bContent}
+                    where bNum = #{board.bNum}
+    </update>
+
+    <delete id="deleteBoardInfo" >
+        delete from board where bNum = #{bNum}
+    </delete>
+</mapper>
