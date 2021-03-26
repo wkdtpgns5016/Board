@@ -18,8 +18,6 @@ import java.util.List;
 public class MemberController {
     @Autowired
     MemberService memberService;
-    @Autowired
-    BoardService boardService;
 
     @RequestMapping("/login")
     public String loginView(HttpSession session){
@@ -31,16 +29,6 @@ public class MemberController {
     public String signupView(HttpSession session){
         if(session.getAttribute("member") == null) return "signupView";
         else return "redirect:/board/main";
-    }
-
-    @RequestMapping("/main")
-    public String mainView(HttpSession session, Model model){
-        if(session.getAttribute("member") == null) return "redirect:/board/login";
-        else {
-            List<BoardDTO> list = boardService.selectBoardList();
-            model.addAttribute("list",list);
-            return "mainView";
-        }
     }
 
     @RequestMapping(value = "/signOK", method=RequestMethod.POST)
@@ -68,24 +56,4 @@ public class MemberController {
         return"redirect:/board/login";
     }
 
-    @RequestMapping("/write")
-    public String writeView(){
-        return "boardWriteView";
-    }
-
-    @RequestMapping("/writeOK")
-    public String createBoard(@RequestParam("bTitle") String bTitle,
-                              @RequestParam("bContent") String bContent,HttpSession session){
-
-        MemberDTO member = (MemberDTO)session.getAttribute("member");
-        System.out.println(member.getMemName() + "가 쓴"+bTitle);
-        BoardDTO board = new BoardDTO(member.getMemId(),bTitle,bContent);
-        boardService.insertBoardInfo(board);
-        return "redirect:/board/main";
-    }
-    @RequestMapping("/content")
-    public String contentView(@RequestParam("bNum") String bNum){
-
-        return "/boardView";
-    }
 }

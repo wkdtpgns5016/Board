@@ -22,7 +22,7 @@ ${member.memName} 님 환영합니다 ! <a href="/board/logout">로그아웃</a>
     <c:forEach items="${list}" var="board">
         <tr>
             <td>${board.bNum}</td>
-            <td><a href="/board/content">${board.bTitle}</a></td>
+            <td><a href="/board/content?bNum=${board.bNum}">${board.bTitle}</a></td>
             <td>${board.bId}</td>
             <td>${board.bDate}</td>
             <td>${board.bHits}</td>

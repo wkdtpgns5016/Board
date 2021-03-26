@@ -21,11 +21,15 @@
     </insert>
 
     <update id="updateBoardInfo" parameterType="com.board.model.BoardDTO">
-        update board set bTitle = #{board.bTitle} and bContent = #{board.bContent}
+        update board set bTitle = #{board.bTitle}, bContent = #{board.bContent}, bDate = NOW()
                     where bNum = #{board.bNum}
     </update>
 
     <delete id="deleteBoardInfo" >
         delete from board where bNum = #{bNum}
     </delete>
+
+    <update id="updateBoardHit" >
+        update board set bHits = bHits + 1 where bNum = #{bNum}
+    </update>
 </mapper>

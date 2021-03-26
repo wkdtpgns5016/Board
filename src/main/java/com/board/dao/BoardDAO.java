@@ -16,7 +16,7 @@ public class BoardDAO {
     public BoardDTO selectBoardInfo(int bNum) {
         HashMap<String, Object> param = new HashMap<>();
         param.put("bNum",bNum);
-        return sqlSessionTemplate.selectOne("board.selectBoardList",param);
+        return sqlSessionTemplate.selectOne("board.selectBoardInfo",param);
     }
 
     public List<BoardDTO> selectBoardList() {
@@ -32,12 +32,18 @@ public class BoardDAO {
     public int updateBoardInfo(BoardDTO board) {
         HashMap<String, Object> param = new HashMap<>();
         param.put("board",board);
-        return sqlSessionTemplate.update("board.insertBoardInfo", param);
+        return sqlSessionTemplate.update("board.updateBoardInfo", param);
     }
 
     public int deleteBoardInfo(int bNum) {
         HashMap<String, Object> param = new HashMap<>();
-        param.put("board",bNum);
+        param.put("bNum",bNum);
         return sqlSessionTemplate.delete("board.deleteBoardInfo", param);
+    }
+
+    public int updateBoardHit(int bNum){
+        HashMap<String, Object> param = new HashMap<>();
+        param.put("bNum",bNum);
+        return sqlSessionTemplate.update("board.updateBoardHit", param);
     }
 }
