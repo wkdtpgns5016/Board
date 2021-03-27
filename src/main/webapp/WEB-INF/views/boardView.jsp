@@ -48,6 +48,7 @@
 </c:if>
 <form action="/board/main">
     <input type="submit" value="목록" />
+
 </form>
 </body>
 </html>

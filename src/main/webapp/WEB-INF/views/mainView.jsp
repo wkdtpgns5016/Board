@@ -9,7 +9,9 @@
 </head>
 <body>
 <h2>메인화면</h2><br>
-${member.memName} 님 환영합니다 ! <a href="/board/logout">로그아웃</a><br>
+${member.memName} 님 환영합니다 !
+<a href="/board/logout">로그아웃</a> /
+<a href="/board/myInfo">내정보</a><br>
 
 <table>
     <tr>

@@ -67,4 +67,5 @@ public class BoardController {
         boardService.deleteBoardInfo(Integer.parseInt(bNum));
         return "redirect:/board/main";
     }
+
 }

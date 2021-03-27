@@ -32,4 +32,8 @@
     <update id="updateBoardHit" >
         update board set bHits = bHits + 1 where bNum = #{bNum}
     </update>
+
+    <delete id="deleteBoardByMember">
+        delete from board where bId = #{memId}
+    </delete>
 </mapper>

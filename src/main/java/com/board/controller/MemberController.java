@@ -7,6 +7,7 @@ import com.board.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,4 +57,22 @@ public class MemberController {
         return"redirect:/board/login";
     }
 
+    @RequestMapping(value = "/myInfo")
+    public String myInfoView() {
+        return"myInfoView";
+    }
+
+    @RequestMapping(value = "/memberUpdate")
+    public String updateMember(@ModelAttribute("member") MemberDTO member, HttpSession session) {
+        memberService.updateMemberInfo(member);
+        session.setAttribute("member",member);
+        return"redirect:/board/main";
+    }
+
+    @RequestMapping(value = "/memberDelete")
+    public String updateMember(@RequestParam("memId") String memId, HttpSession session) {
+        memberService.deleteMemberInfo(memId);
+        session.invalidate();
+        return"redirect:/board/login";
+    }
 }

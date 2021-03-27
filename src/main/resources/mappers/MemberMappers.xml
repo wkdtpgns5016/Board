@@ -15,9 +15,23 @@
                 #{member.memPhone},
                 #{member.memEmail})
     </insert>
+
     <select id="selectMemberInfo" resultType="com.board.model.MemberDTO">
         select * from member
         where memId = #{memId} and
               memPw = #{memPw}
     </select>
+
+    <update id="updateMemberInfo" parameterType="com.board.model.MemberDTO">
+        update member set memName = #{member.memName},
+                          memPw = #{member.memPw},
+                          memPhone = #{member.memPhone},
+                          memEmail = #{member.memEmail}
+        where memId = #{member.memId}
+    </update>
+
+    <delete id="deleteMemberInfo">
+        delete from member where memId = #{memId}
+    </delete>
+
 </mapper>

@@ -25,4 +25,16 @@ public class MemberDAO {
         param.put("memPw", memPw);
         return sqlSessionTemplate.selectOne("member.selectMemberInfo", param);
     }
+
+    public int updateMemberInfo(MemberDTO member) {
+        HashMap<String, Object> param = new HashMap<>();
+        param.put("member", member);
+        return sqlSessionTemplate.update("member.updateMemberInfo",param);
+    }
+
+    public int deleteMemberInfo(String memId) {
+        HashMap<String, Object> param = new HashMap<>();
+        param.put("memId", memId);
+        return sqlSessionTemplate.delete("member.deleteMemberInfo",param);
+    }
 }

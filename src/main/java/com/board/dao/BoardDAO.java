@@ -46,4 +46,10 @@ public class BoardDAO {
         param.put("bNum",bNum);
         return sqlSessionTemplate.update("board.updateBoardHit", param);
     }
+
+    public int deleteBoardByMember(String memId){
+        HashMap<String, Object> param = new HashMap<>();
+        param.put("memId",memId);
+        return sqlSessionTemplate.delete("board.deleteBoardByMember", param);
+    }
 }
