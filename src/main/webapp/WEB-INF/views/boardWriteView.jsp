@@ -16,7 +16,7 @@
 </head>
 <body>
 <h2>게시글 쓰기</h2>
-<form action="/board/writeOK" method="post">
+<form action="/board/writeBoardOK" method="post">
     제목 <br />
     <input type="text" name="bTitle" size="50"/><br />
     내용<br />

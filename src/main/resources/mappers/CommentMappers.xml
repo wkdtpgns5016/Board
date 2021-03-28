@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="comment">
+    <select id="selectCommentList" resultType="com.board.model.CommentDTO">
+        select * from comment where cbNum = #{cbNum}
+    </select>
+
+    <insert id="insertCommentInfo" parameterType="com.board.model.CommentDTO">
+        insert into comment (cbNum,
+                             cId,
+                             cContent)
+        values (#{comment.cbNum},#{comment.cId},#{comment.cContent})
+    </insert>
+
+    <update id="updateCommentInfo" parameterType="com.board.model.CommentDTO">
+        update comment set cContent = #{cContent}, cDate = NOW()
+        where cNum = #{cNum}
+    </update>
+
+    <delete id="deleteCommentInfo">
+        delete from comment where cNum = #{cNum}
+    </delete>
+</mapper>

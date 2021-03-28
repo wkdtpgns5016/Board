@@ -42,14 +42,38 @@
         <td id="content">${content.bContent}</td>
     </tr>
 </table>
-<c:if test="${content.bId == member.memId}">
-    <input type="submit" value="수정" onClick="location.href='/board/modify?bNum=${content.bNum}&bId=${content.bId}&bTitle=${content.bTitle}&bContent=${content.bContent}&bDate=${content.bDate}&bHits=${content.bHits}'" />
-    <input type="submit" value="삭제" onClick="location.href='/board/delete?bNum=${content.bNum}'"/>
-</c:if>
 <form action="/board/main">
     <input type="submit" value="목록" />
-
+    <c:if test="${content.bId == member.memId}">
+        <input type="button" value="수정" onClick="location.href='/board/modifyBoard?bNum=${content.bNum}&bId=${content.bId}&bTitle=${content.bTitle}&bContent=${content.bContent}&bDate=${content.bDate}&bHits=${content.bHits}'" />
+        <input type="button" value="삭제" onClick="location.href='/board/deleteBoard?bNum=${content.bNum}'"/>
+    </c:if>
 </form>
+<form action="/board/writeCommentOK">
+    댓글 작성<br>
+    <input type="hidden" name="cbNum" value="${content.bNum}"/>
+    <input type="hidden" name="cId" value="${member.memId}"/>
+    <textarea name="cContent" cols="65" rows="2"></textarea>
+    <input type="submit" value="등록" />
+</form>
+
+<h3>Comment</h3>
+<c:forEach items="${content.bComments}" var="comment">
+    <div style="border: 1px solid; width: 500px; padding: 10px; margin: 10px" >
+        <div style="margin-bottom: 5px">
+            <span style="font-size: large;"><b>${comment.cId}</b></span>
+            <span style=" font-size: small;">${comment.cDate}</span>+
+
+            <c:if test="${comment.cId == member.memId}">
+                <span style="position: absolute;left: 490px">
+                    <a href="/board/deleteComment?cNum=${comment.cNum}&cbNum=${comment.cbNum}">삭제</a>
+                </span>
+            </c:if>
+        </div>
+        <div>
+            <span>${comment.cContent}</span>
+        </div>
+    </div>
+</c:forEach>
 </body>
 </html>
-

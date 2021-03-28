@@ -1,6 +1,7 @@
 package com.board.dao;
 
 import com.board.model.BoardDTO;
+import com.board.model.CommentDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -52,4 +53,5 @@ public class BoardDAO {
         param.put("memId",memId);
         return sqlSessionTemplate.delete("board.deleteBoardByMember", param);
     }
+
 }

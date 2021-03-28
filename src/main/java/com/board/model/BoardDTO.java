@@ -1,6 +1,7 @@
 package com.board.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class BoardDTO {
     int bNum;
@@ -9,6 +10,7 @@ public class BoardDTO {
     String bContent;
     Timestamp bDate;
     int bHits;
+    List<CommentDTO> bComments;
 
     public BoardDTO(String bId, String bTitle, String bContent) {
         this.bId = bId;
@@ -63,4 +65,8 @@ public class BoardDTO {
     public void setbHits(int bHits) {
         this.bHits = bHits;
     }
+
+    public List<CommentDTO> getbComments() { return bComments; }
+
+    public void setbComments(List<CommentDTO> bComments) { this.bComments = bComments; }
 }

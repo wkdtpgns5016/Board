@@ -1,7 +1,9 @@
 package com.board.service;
 
 import com.board.dao.BoardDAO;
+import com.board.dao.CommentDAO;
 import com.board.model.BoardDTO;
+import com.board.model.CommentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +13,15 @@ import java.util.List;
 public class BoardServiceImpl implements BoardService{
     @Autowired
     BoardDAO boardDAO;
+    @Autowired
+    CommentDAO commentDAO;
 
     @Override
     public BoardDTO readBoardInfo(int bNum) {
         boardDAO.updateBoardHit(bNum);
-        return boardDAO.selectBoardInfo(bNum);
+        BoardDTO board = boardDAO.selectBoardInfo(bNum);
+        board.setbComments(commentDAO.selectCommentList(bNum));
+        return board;
     }
 
     @Override
@@ -29,5 +35,18 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public int deleteBoardInfo(int bNum) { return boardDAO.deleteBoardInfo(bNum); }
+
+    @Override
+    public List<CommentDTO> readCommentList(int cbNum) { return commentDAO.selectCommentList(cbNum); }
+
+    @Override
+    public int createCommentInfo(CommentDTO comment) { return commentDAO.insertCommentInfo(comment); }
+
+    @Override
+    public int updateCommentInfo(String cContent) { return commentDAO.updateCommentInfo(cContent); }
+
+    @Override
+    public int deleteCommentInfo(int cNum) { return commentDAO.deleteCommentInfo(cNum); }
+
 
 }

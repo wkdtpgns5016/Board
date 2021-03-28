@@ -16,7 +16,7 @@
 </head>
 <body>
 <h2>게시글 수정</h2>
-<form action="/board/modifyOK" method="post">
+<form action="/board/modifyBoardOK" method="post">
     <input type="hidden" name="bNum" value="${content.bNum}"/>
     제목 <br />
     <input type="text" name="bTitle" value="${content.bTitle}" size="50"/><br />

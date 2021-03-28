@@ -31,7 +31,7 @@ ${member.memName} 님 환영합니다 !
         </tr>
     </c:forEach>
 </table>
-<form action="/board/write">
+<form action="/board/writeBoard">
     <input type="submit" value="글쓰기"/>
 </form>
 </body>
