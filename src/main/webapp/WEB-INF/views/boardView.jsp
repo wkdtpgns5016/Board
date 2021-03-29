@@ -59,21 +59,57 @@
 
 <h3>Comment</h3>
 <c:forEach items="${content.bComments}" var="comment">
-    <div style="border: 1px solid; width: 500px; padding: 10px; margin: 10px" >
-        <div style="margin-bottom: 5px">
-            <span style="font-size: large;"><b>${comment.cId}</b></span>
-            <span style=" font-size: small;">${comment.cDate}</span>+
+    <c:if test="${comment.cGroupNum == 0}">
+        <div style="border: 1px solid; width: 500px; padding: 10px; margin: 10px" >
+            <div style="margin-bottom: 5px">
+                <span style="font-size: large;"><b>${comment.cId}</b></span>
+                <span style=" font-size: small;">${comment.cDate}</span>+
 
-            <c:if test="${comment.cId == member.memId}">
-                <span style="position: absolute;left: 490px">
-                    <a href="/board/deleteComment?cNum=${comment.cNum}&cbNum=${comment.cbNum}">삭제</a>
+                <c:if test="${comment.cId == member.memId}">
+                    <span style="position: absolute;left: 490px">
+                        <a href="/board/deleteComment?cNum=${comment.cNum}&cbNum=${comment.cbNum}">삭제</a>
+                    </span>
+                </c:if>
+            </div>
+            <div>
+                <span>${comment.cContent}</span>
+            </div>
+            <div>
+                <span>
+                    <a href="#none" id="c${comment.cGroup}${comment.cGroupNum}" style="text-decoration: none"
+                       onclick="if(c${comment.cGroup}.style.display == 'none'){
+                               c${comment.cGroup}.style.display = '';
+                               c${comment.cGroup}${comment.cGroupNum}.innerText = '접기'; }
+                               else{ c${comment.cGroup}.style.display = 'none';
+                               c${comment.cGroup}${comment.cGroupNum}.innerText = '답글'; }">답글</a>
                 </span>
-            </c:if>
+            </div>
         </div>
-        <div>
-            <span>${comment.cContent}</span>
+
+        <div id="c${comment.cGroup}" style="display: none">
+            <c:forEach items="${content.bComments}" var="reply">
+                <c:if test="${reply.cGroupNum != 0}">
+                    <c:if test="${reply.cGroup == comment.cGroup}">
+                        <div style="border: 1px solid; width: 450px; padding: 10px; margin: 10px; position: relative; left: 50px" >
+                            <div style="margin-bottom: 5px">
+                                <span style="font-size: medium;"><b>${reply.cId}</b></span>
+                                <span style=" font-size: smaller;">${reply.cDate}</span>+
+
+                                <c:if test="${reply.cId == member.memId}">
+                                <span style="position: absolute;left: 435px">
+                                    <a href="/board/deleteComment?cNum=${reply.cNum}&cbNum=${reply.cbNum}" style="font-size: small">삭제</a>
+                                </span>
+                                </c:if>
+                            </div>
+                            <div>
+                                <span style=" font-size: small">${reply.cContent}</span>
+                            </div>
+                        </div>
+                    </c:if>
+                </c:if>
+            </c:forEach>
         </div>
-    </div>
+    </c:if>
 </c:forEach>
 </body>
 </html>

@@ -4,14 +4,20 @@
 
 <mapper namespace="comment">
     <select id="selectCommentList" resultType="com.board.model.CommentDTO">
-        select * from comment where cbNum = #{cbNum}
+        select * from comment where cbNum = #{cbNum} order by cGroup;
     </select>
 
     <insert id="insertCommentInfo" parameterType="com.board.model.CommentDTO">
         insert into comment (cbNum,
                              cId,
-                             cContent)
-        values (#{comment.cbNum},#{comment.cId},#{comment.cContent})
+                             cContent,
+                             cGroup,
+                             cGroupNum)
+        values (#{comment.cbNum},
+                #{comment.cId},
+                #{comment.cContent},
+                (SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = 'comment' AND table_schema = DATABASE();),
+        #{comment.cGroupNum})
     </insert>
 
     <update id="updateCommentInfo" parameterType="com.board.model.CommentDTO">
@@ -22,4 +28,17 @@
     <delete id="deleteCommentInfo">
         delete from comment where cNum = #{cNum}
     </delete>
+
+    <insert id="insertCommentReplyInfo" parameterType="com.board.model.CommentDTO">
+        insert into comment (cbNum,
+                             cId,
+                             cContent,
+                             cGroup,
+                             cGroupNum)
+        values (#{comment.cbNum},
+                #{comment.cId},
+                #{comment.cContent},
+                #{comment.cGroup},
+                (select max(a.cGroupNum) + 1 from comment a group by a.cGroup having a.cGroup = #{comment.cGroup}));
+    </insert>
 </mapper>
