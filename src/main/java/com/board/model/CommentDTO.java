@@ -8,6 +8,8 @@ public class CommentDTO {
     String cId;
     String cContent;
     Timestamp cDate;
+    int cGroup;
+    int cGroupNum;
 
     public CommentDTO(int cbNum, String cId, String cContent) {
         this.cbNum = cbNum;
@@ -54,4 +56,13 @@ public class CommentDTO {
     public void setcDate(Timestamp cDate) {
         this.cDate = cDate;
     }
+
+    public int getcGroup() { return cGroup; }
+
+    public void setcGroup(int cGroup) { this.cGroup = cGroup; }
+
+    public int getcGroupNum() { return cGroupNum; }
+
+    public void setcGroupNum(int cGroupNum) { this.cGroupNum = cGroupNum; }
+
 }

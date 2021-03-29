@@ -37,4 +37,10 @@ public class CommentDAO {
         param.put("cNum",cNum);
         return sqlSessionTemplate.delete("comment.deleteCommentInfo", param);
     }
+
+    public int insertCommentReplyInfo(CommentDTO comment){
+        HashMap<String, Object> param = new HashMap<>();
+        param.put("comment",comment);
+        return sqlSessionTemplate.insert("comment.insertCommentReplyInfo", param);
+    }
 }
