@@ -16,8 +16,8 @@
         values (#{comment.cbNum},
                 #{comment.cId},
                 #{comment.cContent},
-                (SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = 'comment' AND table_schema = DATABASE();),
-        #{comment.cGroupNum})
+                (SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = 'comment' AND table_schema = DATABASE()),
+                #{comment.cGroupNum})
     </insert>
 
     <update id="updateCommentInfo" parameterType="com.board.model.CommentDTO">

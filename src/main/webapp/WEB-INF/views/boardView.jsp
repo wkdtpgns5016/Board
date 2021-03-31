@@ -108,6 +108,16 @@
                     </c:if>
                 </c:if>
             </c:forEach>
+            <div style="border: 1px solid; width: 450px; padding: 10px; margin: 10px; position: relative; left: 50px">
+                <form action="/board/writeCommentReplyOK">
+                    답글 작성<br>
+                    <input type="hidden" name="cbNum" value="${content.bNum}"/>
+                    <input type="hidden" name="cId" value="${member.memId}"/>
+                    <input type="hidden" name="cGroup" value="${comment.cGroup}"/>
+                    <span><textarea name="cContent" cols="50" rows="2"></textarea></span>
+                    <span><input type="submit" value="등록" /></span>
+                </form>
+            </div>
         </div>
     </c:if>
 </c:forEach>

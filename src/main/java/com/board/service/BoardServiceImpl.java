@@ -40,7 +40,11 @@ public class BoardServiceImpl implements BoardService{
     public List<CommentDTO> readCommentList(int cbNum) { return commentDAO.selectCommentList(cbNum); }
 
     @Override
-    public int createCommentInfo(CommentDTO comment) { return commentDAO.insertCommentInfo(comment); }
+    public int createCommentInfo(CommentDTO comment) {
+        if(comment.getcGroup() == 0)
+            return commentDAO.insertCommentInfo(comment);
+        else return commentDAO.insertCommentReplyInfo(comment);
+    }
 
     @Override
     public int updateCommentInfo(String cContent) { return commentDAO.updateCommentInfo(cContent); }
