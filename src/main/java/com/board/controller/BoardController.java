@@ -85,4 +85,16 @@ public class BoardController {
         boardService.deleteCommentInfo(Integer.parseInt(cNum));
         return "redirect:/board/content?bNum="+cbNum;
     }
+
+    @RequestMapping("/writeCommentReplyOK")
+    public String crateCommentReply(@RequestParam("cbNum") int cbNum,
+                                    @RequestParam("cId") String cId,
+                                    @RequestParam("cGroup") int cGroup,
+                                    @RequestParam("cContent") String cContent){
+
+        CommentDTO comment = new CommentDTO(cbNum,cId,cContent);
+        comment.setcGroup(cGroup);
+        boardService.createCommentInfo(comment);
+        return "redirect:/board/content?bNum="+cbNum;
+    }
 }

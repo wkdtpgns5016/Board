@@ -15,6 +15,8 @@ public class CommentDTO {
         this.cbNum = cbNum;
         this.cId = cId;
         this.cContent = cContent;
+        this.cGroup = 0;
+        this.cGroupNum = 0;
     }
 
     public int getcNum() {
