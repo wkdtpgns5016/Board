@@ -50,7 +50,10 @@ public class BoardServiceImpl implements BoardService{
     public int updateCommentInfo(String cContent) { return commentDAO.updateCommentInfo(cContent); }
 
     @Override
-    public int deleteCommentInfo(int cNum) { return commentDAO.deleteCommentInfo(cNum); }
-
-
+    public int deleteCommentInfo(int cNum,int cGroup, int cGroupNum) {
+        if(cGroupNum == 0){
+            return commentDAO.deleteCommentGroup(cGroup);
+        }
+        else return commentDAO.deleteCommentInfo(cNum);
+    }
 }

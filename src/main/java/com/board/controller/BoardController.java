@@ -80,9 +80,11 @@ public class BoardController {
     }
 
     @RequestMapping("/deleteComment")
-    public String deleteComment(@RequestParam("cNum") String cNum,
-                                @RequestParam("cbNum") int cbNum){
-        boardService.deleteCommentInfo(Integer.parseInt(cNum));
+    public String deleteComment(@RequestParam("cNum") int cNum,
+                                @RequestParam("cbNum") int cbNum,
+                                @RequestParam("cGroup") int cGroup,
+                                @RequestParam("cGroupNum") int cGroupNum){
+        boardService.deleteCommentInfo(cNum,cGroup,cGroupNum);
         return "redirect:/board/content?bNum="+cbNum;
     }
 

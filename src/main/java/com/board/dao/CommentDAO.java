@@ -43,4 +43,10 @@ public class CommentDAO {
         param.put("comment",comment);
         return sqlSessionTemplate.insert("comment.insertCommentReplyInfo", param);
     }
+
+    public int deleteCommentGroup(int cGroup){
+        HashMap<String, Object> param = new HashMap<>();
+        param.put("cGroup",cGroup);
+        return sqlSessionTemplate.delete("comment.deleteCommentGroup", param);
+    }
 }

@@ -41,4 +41,8 @@
                 #{comment.cGroup},
                 (select max(a.cGroupNum) + 1 from comment a group by a.cGroup having a.cGroup = #{comment.cGroup}));
     </insert>
+    <delete id="deleteCommentGroup">
+        delete from comment where cGroup = #{cGroup}
+    </delete>
+
 </mapper>
