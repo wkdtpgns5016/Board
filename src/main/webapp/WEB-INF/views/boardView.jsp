@@ -67,7 +67,7 @@
 
                 <c:if test="${comment.cId == member.memId}">
                     <span style="position: absolute;left: 490px">
-                        <a href="/board/deleteComment?cNum=${comment.cNum}&cbNum=${comment.cbNum}">삭제</a>
+                        <a href="/board/deleteComment?cNum=${comment.cNum}&cbNum=${comment.cbNum}&cGroup=${comment.cGroup}&cGroupNum=${comment.cGroupNum}">삭제</a>
                     </span>
                 </c:if>
             </div>
@@ -97,7 +97,7 @@
 
                                 <c:if test="${reply.cId == member.memId}">
                                 <span style="position: absolute;left: 435px">
-                                    <a href="/board/deleteComment?cNum=${reply.cNum}&cbNum=${reply.cbNum}" style="font-size: small">삭제</a>
+                                    <a href="/board/deleteComment?cNum=${reply.cNum}&cbNum=${reply.cbNum}&cGroup=${reply.cGroup}&cGroupNum=${reply.cGroupNum}" style="font-size: small">삭제</a>
                                 </span>
                                 </c:if>
                             </div>

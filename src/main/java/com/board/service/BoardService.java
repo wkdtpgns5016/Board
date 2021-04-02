@@ -16,5 +16,5 @@ public interface BoardService {
     public List<CommentDTO> readCommentList(int cbNum);
     public int createCommentInfo(CommentDTO comment);
     public int updateCommentInfo(String cContent);
-    public int deleteCommentInfo(int cNum);
+    public int deleteCommentInfo(int cNum,int cGroup, int cGroupNum);
 }
